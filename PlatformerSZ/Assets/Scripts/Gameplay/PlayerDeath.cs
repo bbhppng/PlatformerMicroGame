@@ -13,7 +13,7 @@ namespace Platformer.Gameplay
     public class PlayerDeath : Simulation.Event<PlayerDeath>
     {
         PlatformerModel model = Simulation.GetModel<PlatformerModel>();
-
+        
         public override void Execute()
         {
             var player = model.player;
@@ -25,11 +25,13 @@ namespace Platformer.Gameplay
                 // player.collider.enabled = false;
                 player.controlEnabled = false;
 
-                if (player.audioSource && player.ouchAudio)
-                    player.audioSource.PlayOneShot(player.ouchAudio);
+                if (player.audioSource && player._deathAudio)
+                    player.audioSource.PlayOneShot(player._deathAudio);
+                if (player._deathCanvasImage)
+                    player._deathCanvasImage.SetActive(true);
                 player.animator.SetTrigger("hurt");
                 player.animator.SetBool("dead", true);
-                Simulation.Schedule<PlayerSpawn>(2);
+                Simulation.Schedule<PlayerSpawn>(5);
             }
         }
     }

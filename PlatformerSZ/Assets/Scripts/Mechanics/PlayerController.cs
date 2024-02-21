@@ -16,7 +16,8 @@ namespace Platformer.Mechanics
     {
         public AudioClip jumpAudio;
         public AudioClip respawnAudio;
-        public AudioClip ouchAudio;
+        public AudioClip _deathAudio;
+        public GameObject _deathCanvasImage;
 
         /// <summary>
         /// Max horizontal speed of the player.
